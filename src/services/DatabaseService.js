@@ -8,16 +8,13 @@ class DatabaseService {
 
   async createTableIfNotExists() {
     return new Promise((resolve, reject) => {
-      this.db.run(
-        'CREATE TABLE IF NOT EXISTS populations (state TEXT, city TEXT, population INT)',
-        (err) => {
-          if (err) {
-            reject(err);
-          } else {
-            resolve();
-          }
+      this.db.run('CREATE TABLE IF NOT EXISTS populations (state TEXT, city TEXT, population INT)', (err) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve();
         }
-      );
+      });
     });
   }
 

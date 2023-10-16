@@ -36,7 +36,6 @@ describe('PopulationService', () => {
     // Check if createTableIfNotExists and insertData were called
     expect(mockDatabaseService.createTableIfNotExists).toHaveBeenCalledTimes(1);
     expect(mockDatabaseService.insertData).toHaveBeenCalledTimes(3); // Two rows in the CSV
-
   });
 
   it('getData should fetch data from the database', async () => {
@@ -63,5 +62,4 @@ describe('PopulationService', () => {
     // Check if insertData was called with the correct arguments
     expect(mockDatabaseService.insertData).toHaveBeenCalledWith('TX', 'Houston', 98765);
   });
-
 });

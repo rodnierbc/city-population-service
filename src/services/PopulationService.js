@@ -2,7 +2,9 @@ const axios = require('axios');
 
 class PopulationService {
   constructor(databaseService) {
-    this.datasource = process.env.DATA_SOURCE || 'https://raw.githubusercontent.com/Trazi-Ventures/sample-data-interview/main/city_populations.csv';
+    this.datasource =
+      process.env.DATA_SOURCE ||
+      'https://raw.githubusercontent.com/Trazi-Ventures/sample-data-interview/main/city_populations.csv';
     this.databaseService = databaseService;
   }
 

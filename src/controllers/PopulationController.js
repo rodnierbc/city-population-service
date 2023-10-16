@@ -6,7 +6,7 @@ const PopulationService = require('../services/PopulationService');
 const RedisService = require('../services/RedisService');
 
 // Create instances of PopulationService and RedisService
-const databaseService = new DatabaseService()
+const databaseService = new DatabaseService();
 const populationService = new PopulationService(databaseService);
 const redisService = new RedisService();
 redisService.connectRedis();
@@ -16,11 +16,11 @@ router.get('/population/state/:state/city/:city', async (req, res) => {
   let { state, city } = req.params;
   state = formatString(state);
   city = formatString(city);
-  
+
   try {
     // Check if data is in Redis cache
     const cachedData = await redisService.get(`${state}-${city}`);
-    
+
     if (cachedData) {
       console.log('Cache hit!');
       return res.status(200).json({ population: JSON.parse(cachedData) });
@@ -28,7 +28,7 @@ router.get('/population/state/:state/city/:city', async (req, res) => {
 
     // If not in cache, fetch data from SQLite
     const populationData = await populationService.getData(state, city);
-    
+
     if (populationData) {
       // Cache the fetched data in Redis
       await redisService.setEx(`${state}-${city}`, 3600, populationData.population.toString());

@@ -55,7 +55,6 @@ class RedisService {
       console.log('Redis connection closed.');
     }
   }
-
 }
 
 module.exports = RedisService;

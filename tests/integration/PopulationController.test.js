@@ -22,5 +22,4 @@ describe('Population Controller Integration Test', () => {
   it('should handle errors gracefully when updating population data', async () => {
     expect(true).toBe(true);
   });
-
 });
