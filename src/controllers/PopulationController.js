@@ -54,18 +54,24 @@ router.put('/population/state/:state/city/:city', async (req, res) => {
     // Check if the data already exists
     const existingData = await populationService.getData(state, city);
 
-    if (existingData) {
-      // Data already exists, update it
-      await populationService.putData(state, city, population);
-      await redisService.setEx(`${state}-${city}`, 3600, population.toString());
-      console.log('Data updated successfully!');
-      return res.status(200).send('Data updated successfully!');
+    if (typeof population !== 'undefined') {
+      if (existingData) {
+        // Data already exists, update it
+        await populationService.putData(state, city, population);
+        await redisService.setEx(`${state}-${city}`, 3600, population.toString());
+        console.log('Data updated successfully!');
+        return res.status(200).send('Data updated successfully!');
+      } else {
+        // Data does not exist, create it
+        await populationService.putData(state, city, population);
+        await redisService.setEx(`${state}-${city}`, 3600, population.toString());
+        console.log('Data created successfully!');
+        return res.status(201).send('Data created successfully!');
+      }
     } else {
-      // Data does not exist, create it
-      await populationService.putData(state, city, population);
-      await redisService.setEx(`${state}-${city}`, 3600, population.toString());
-      console.log('Data created successfully!');
-      return res.status(201).send('Data created successfully!');
+      // Population is not provided in the request body
+      console.error('Population not provided in the request body');
+      return res.status(400).json({ error: 'Population not provided' });
     }
   } catch (error) {
     console.error('Error in PUT request:', error);
