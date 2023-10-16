@@ -5,4 +5,5 @@ node_modules/
 *.exe
 *.o
 *.db
+*.db-journal
 
