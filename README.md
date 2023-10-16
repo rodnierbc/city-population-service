@@ -16,7 +16,6 @@ while also letting you set a cities population.
 
 - **Create Population Data**: Add population data for a new state and city combination.
 
-
 ## Built With
 
 - Node.js
@@ -32,6 +31,12 @@ Our data management strategy is designed to optimize performance and data integr
 
 - **Redis Cache**: To enhance response times, we leverage Redis for caching. When you request data, Redis delivers lightning-fast responses, ensuring a seamless user experience.
 
+## Prerequisites
+
+Before running the service, please ensure you have the following prerequisites:
+
+- Node.js: [Install Node.js](https://nodejs.org/)
+- Redis: [Install Redis](https://redis.io/download)
 
 ## Installation
 
@@ -43,6 +48,7 @@ To get a local copy up and running, follow these steps:
 git clone https://github.com/rodnierbc/city-population-service.git
 cd city-population-service
 ```
+
 2. Install the dependencies:
 
 ```bash
@@ -52,6 +58,7 @@ npm install
 ## Usage
 
 To start the development server:
+
 ```
 npm start
 ```
@@ -59,17 +66,11 @@ npm start
 ## Running Tests
 
 You can run tests using the following command:
+
 ```
 npm test
 ```
 
-
-
 ## Author
 
 Rodnier Borrego
-
-
-
-
-
